@@ -1,4 +1,10 @@
 
+ScriptedPlugin.scriptedSettings
+ScriptedPlugin.scriptedLaunchOpts := {
+  ScriptedPlugin.scriptedLaunchOpts.value ++
+    Seq("-Dplugin.version=" + version.value)
+}
+
 sbtPlugin := true
 scalaVersion := "2.10.4"
 
