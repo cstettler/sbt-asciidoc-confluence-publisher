@@ -1,0 +1,48 @@
+= SBT Plugin for AsciiDoc Confluence Publisher
+
+This project provides a SBT plugin for publishing AsciiDoc documentation into Confluence using the
+link:https://github.com/alainsahli/confluence-publisher[AsciiDoc Confluence Publisher].
+
+== Usage
+
+[NOTE]
+====
+This plugin is not yet available in Maven central or any other repository (access via Sonatype has been requested).
+Therefore, the plugin needs to be built manually and published to a local Maven repository (e.g. locally or
+company-wide). Also, the corresponding resolver needs to be configured (e.g. `Resolver.mavenLocal`).
+====
+
+[NOTE]
+====
+This plugin currently uses the latest snapshot version of the AsciiDoc Confluence Publisher. Therefore, the Sonatype OSS
+Snapshot repository has to be configured as a resolver.
+====
+
+
+Add the plugin to the project using the `plugins.sbt` file:
+
+----
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
+addSbtPlugin("com.github.cstettler" % "sbt-asciidoc-confluence-publisher" % "0.1.0-SNAPSHOT"))
+----
+
+
+Enable and configure the plugin in the `build.sbt` file:
+
+----
+lazy val root = (project in file(".")).enablePlugins(AsciidocConfluencePublisherPlugin).settings(
+  rootConfluenceUrl := "http://<confluence-host>:<port>",
+  spaceKey := "<space-key>",
+  ancestorId := "<ancestor-id>",
+  username := "<username>",
+  password := "<password>"
+)
+----
+
+Place all documentation into the `etc/docs` folder (this default can be customized using the `asciidocRootFolder`
+setting). Follow the source structure documented on the
+link:https://github.com/alainsahli/confluence-publisher[AsciiDoc Confluence Publisher] project page.
+
+
+Trigger the publication via the `publishToConfluence` task.
