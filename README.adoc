@@ -12,18 +12,10 @@ Therefore, the plugin needs to be built manually and published to a local Maven 
 company-wide). Also, the corresponding resolver needs to be configured (e.g. `Resolver.mavenLocal`).
 ====
 
-[NOTE]
-====
-This plugin currently uses the latest snapshot version of the AsciiDoc Confluence Publisher. Therefore, the Sonatype OSS
-Snapshot repository has to be configured as a resolver.
-====
-
 
 Add the plugin to the project using the `plugins.sbt` file:
 
 ----
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-
 addSbtPlugin("com.github.cstettler" % "sbt-asciidoc-confluence-publisher" % "0.1.0-SNAPSHOT"))
 ----
 
